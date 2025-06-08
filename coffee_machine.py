@@ -1,10 +1,31 @@
+# import asyncio
+
+# TO-DO: add @require_power functionality
+
 class CoffeeMachine:
 
     menu = ["Hot Espresso", "Cold Espresso", "Hot Latte", "Latte Affogato"]
     
-    # def __init__(self, menu):
-    #     self.menu = ["Hot Espresso", "Cold espresso", "Hot Latte", "Latte Affogato"]
+    def __init__(self):
 
+        self.power = False
+        
+
+    def on_power(f):
+        def wrapper(self, *args, **kwargs):
+            if self.power:
+                return f(self, *args, **kwargs)
+            else:
+                print("Beep! Beep!")
+        return wrapper
+
+    def power_on(self):
+        self.power = True
+
+    def power_off(self):
+        self.power = False
+
+    @on_power
     def brew(self, drink):
         if drink in self.menu:
             print(f"Enjoy your {drink}")
