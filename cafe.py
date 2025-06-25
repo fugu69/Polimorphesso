@@ -10,5 +10,5 @@ cashier = Cashier(1000)
 
 coffee_machine.power_on()
 # coffee_machine.power_off()
-drink = cashier.accept_order()
+drink, price = cashier.accept_order()
 coffee_machine.brew(drink)
